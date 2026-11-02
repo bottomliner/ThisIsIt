@@ -1,48 +1,58 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LFG</title>
 <style>
-:root{--bg:#fbfaf7;--fg:#1c2230;--mut:#5d6575;--ac:#1F3864;--cd:#eef1f7;--bd:#cfd6e3;--hl:#ffe9a8;--hf:#4a3a00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#11141b;--fg:#e9ecf3;--mut:#9ca5b6;--ac:#9db8f2;--cd:#1a2030;--bd:#2d364d;--hl:#4d3f10;--hf:#ffe9a8}}
-:root[data-theme=dark]{--bg:#11141b;--fg:#e9ecf3;--mut:#9ca5b6;--ac:#9db8f2;--cd:#1a2030;--bd:#2d364d;--hl:#4d3f10;--hf:#ffe9a8}
+:root{--bg:#fbfaf7;--fg:#1c2230;--mut:#5d6575;--ac:#1F3864;--cd:#eef1f7;--bd:#cfd6e3;--hl:#ffe9a8;--hf:#4a3a00;
+--c0:#eaf5ec;--c0b:#c3dcc8;--c1:#e2f3e5;--c1b:#9fd0a8;--c2:#edf3d3;--c2b:#c1d27f;--c3:#daf0ea;--c3b:#8fcbbb}
+@media(prefers-color-scheme:dark){:root{--bg:#11141b;--fg:#e9ecf3;--mut:#9ca5b6;--ac:#9db8f2;--cd:#1a2030;--bd:#2d364d;--hl:#4d3f10;--hf:#ffe9a8;
+--c0:#16261b;--c0b:#2c4634;--c1:#16301f;--c1b:#2f6a40;--c2:#262d12;--c2b:#566a1f;--c3:#112b26;--c3b:#27665a}}
+.c0{--cd:var(--c0);--bd:var(--c0b)}
+.c1{--cd:var(--c1);--bd:var(--c1b)}
+.c2{--cd:var(--c2);--bd:var(--c2b)}
+.c3{--cd:var(--c3);--bd:var(--c3b)}
+*{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 Calibri,"Segoe UI",system-ui,sans-serif}
+body{margin:0;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bg);color:var(--fg);font:16px/1.5 Calibri,"Segoe UI",system-ui,sans-serif}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
 main{max-width:480px;margin:0 auto;padding:0 14px 40px}
-header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--bd);z-index:5}
-h1{font-size:18px;margin:0 0 8px;color:var(--ac)}
-nav{display:flex;flex-wrap:wrap;gap:6px}
-.tab{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--bd);background:var(--cd);color:var(--fg);border-radius:8px;cursor:pointer}
-.tab[aria-selected=true]{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:700}
-.g{margin:6px 0}
-.st{--cd:#eaf5ec;--bd:#c3dcc8}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .st{--cd:#16261b;--bd:#2c4634}}
-:root[data-theme=dark] .st{--cd:#16261b;--bd:#2c4634}
-h2{font-size:20px;margin:12px 0 6px;color:var(--ac)}
-.hook{font-size:17px;font-weight:700;margin:0 0 8px;padding:10px 12px;background:var(--cd);border-left:4px solid var(--ac);border-radius:4px}
-.lp{color:var(--mut);font-size:14px;margin:0 0 10px}
-details{border:1px solid var(--bd);border-radius:8px;margin:8px 0;background:var(--cd)}
-summary{padding:10px 12px;font-weight:700;cursor:pointer;color:var(--ac)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:grid;gap:5px;padding:8px 0 6px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.row{position:relative;display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;
+-webkit-mask-image:linear-gradient(to right,transparent 0,#000 var(--fl,0px),#000 calc(100% - var(--fr,0px)),transparent 100%);
+mask-image:linear-gradient(to right,transparent 0,#000 var(--fl,0px),#000 calc(100% - var(--fr,0px)),transparent 100%)}
+.row::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:5px 9px;border:1px solid var(--bd);border-radius:7px;background:var(--cd);color:var(--fg);font:inherit;font-size:13px;line-height:1.2;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ac);border-color:var(--ac);color:var(--bg);font-weight:700}
+.sub{display:flex;gap:6px;margin:8px 0}
+.stab{padding:5px 10px;border:1px solid var(--bd);border-radius:8px;background:transparent;color:var(--fg);font:inherit;font-size:14px;cursor:pointer}
+.stab[aria-selected=true]{border-color:var(--ac);background:var(--cd);color:var(--ac);font-weight:700}
+.hook{margin:8px 0 6px;padding:6px 10px;border-left:4px solid var(--ac);border-radius:4px;background:var(--cd);font-size:15px}
+.lp{margin:0 0 8px;color:var(--mut);font-size:13px}
+details{margin:7px 0;border:1px solid var(--bd);border-radius:8px;background:var(--cd)}
+summary{padding:9px 12px;color:var(--ac);font-weight:700;cursor:pointer}
 details>div{padding:0 12px 10px}
-ul{margin:0;padding-left:18px}li{margin:3px 0}
+ul{margin:0;padding-left:18px}
+li{margin:3px 0}
 p{margin:0 0 10px}
-.cf{background:var(--hl);color:var(--hf);padding:0 3px;border-radius:3px}
-table{width:100%;border-collapse:collapse;font-size:15px}
-td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first-child{color:var(--mut);width:42%}
-.sb{position:fixed;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);right:2px;width:6px;background:var(--bd);opacity:.7;border-radius:3px;z-index:20;pointer-events:none}
-.sbt{width:100%;background:var(--ac);border-radius:3px}
-.sub{display:flex;gap:6px;margin:0 0 10px}
-.stab{font:inherit;font-size:14px;padding:5px 10px;border:1px solid var(--bd);background:transparent;color:var(--fg);border-radius:8px;cursor:pointer}
-.stab[aria-selected=true]{border-color:var(--ac);color:var(--ac);font-weight:700;background:var(--cd)}
-.sp[hidden],.hint[hidden]{display:none}
-</style></head><body><main>
-<header><h1>LFG</h1>
-<div class="g"><nav><button class="tab" data-t="intro">Intro</button><button class="tab" data-t="why">Why role</button><button class="tab" data-t="questions">Questions</button><button class="tab" data-t="rules">Rules</button><button class="tab" data-t="mistake">Mistake</button><button class="tab" data-t="numbers">Numbers</button><button class="tab" data-t="lp">Principles</button><button class="tab" data-t="open">Open items</button></nav></div>
-<div class="g"><nav><button class="tab st" data-t="vdc">VDC</button><button class="tab st" data-t="vdce">VDCE</button><button class="tab st" data-t="telco">Telco</button><button class="tab st" data-t="partner">Partner</button><button class="tab st" data-t="hubs">Hubs</button><button class="tab st" data-t="sales">Sales</button><button class="tab st" data-t="scale">Scale</button><button class="tab st" data-t="leads">Leads</button><button class="tab st" data-t="hiring">Hiring</button></nav></div></header>
+table{width:100%;border-collapse:collapse}
+td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}
+td:first-child{width:42%;color:var(--mut)}
+.cf{padding:0 3px;border-radius:3px;background:var(--hl);color:var(--hf)}
+.bar{position:fixed;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);right:2px;z-index:20;width:6px;border-radius:3px;background:var(--bd);opacity:.7;pointer-events:none}
+.bar div{width:100%;border-radius:3px;background:var(--ac)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<header>
+<nav class="row"><button class="tab" data-t="intro" aria-label="Intro">Int</button><button class="tab" data-t="why" aria-label="Why role">Why</button><button class="tab" data-t="mistake" aria-label="Mistakes">Mis</button><button class="tab" data-t="questions" aria-label="Questions">Qs</button><button class="tab" data-t="lp" aria-label="Principles">Ps</button><button class="tab" data-t="rules" aria-label="Rules">Rs</button><button class="tab" data-t="numbers" aria-label="Numbers">Ns</button><button class="tab" data-t="open" aria-label="Open items">Open</button></nav>
+<nav class="row"><button class="tab c1" data-t="vdc">VDC</button><button class="tab c1" data-t="vdce">VDCE</button><button class="tab c1" data-t="hiring">Hiring</button><button class="tab c1" data-t="sales">Sales</button><button class="tab c1" data-t="hubs">Hubs</button><button class="tab c2" data-t="telco">Telco</button><button class="tab c2" data-t="scale">Scale</button><button class="tab c3" data-t="leads">Leads</button><button class="tab c0" data-t="partner">Partner</button></nav>
+</header>
 
 <section class="p" id="intro" hidden>
-<h2>Intro</h2>
 <div class="sub"><button class="stab" data-s="intro1">Intro 1</button><button class="stab" data-s="intro2">Intro 2</button></div>
 <p class="lp hint">Pick a version above.</p>
 <div class="sp" id="intro1" hidden>
@@ -70,127 +80,37 @@ td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first
 <p><b>Why.</b> This role is that same job, with partners instead of my own team. Sellers I don’t employ, in the market I come from. That’s why I’m here.</p></div></details>
 </div>
 </section>
-<section class="p" id="numbers" hidden>
-<h2>Numbers</h2>
-<details open><summary>Key figures</summary><div><table>
-<tr><td>Lead response</td><td>35% to 100% inside the set windows, within 6 months of rollout</td></tr>
-<tr><td>Accepted as real opportunity</td><td>About 40% to 73%, target was 60%. Say “qualified opportunity” in plain words</td></tr>
-<tr><td>Qualified Demand</td><td>19% higher than the year before</td></tr>
-<tr><td>Response windows</td><td>15 minutes, 1 day, 3 business days by lead type</td></tr>
-<tr><td>Telco SLAs</td><td>90% answered, 5% abandoned max, 80% in 20 seconds</td></tr>
-<tr><td>Telco team</td><td>50 to 300 people, plus a new site built</td></tr>
-<tr><td>Cisco sales teams</td><td>10 to 15 sellers, quarterly pipeline up to USD 50M, software, hardware and cloud</td></tr>
-<tr><td>Teleperformance</td><td>$27M TCV, full P&amp;L, 300 to 1,500 FTEs, four new sites</td></tr>
-<tr><td>Hub consolidation</td><td>10 sites to 3 hubs (China, India, Singapore), one vendor, RFP to 12 vendors, 3 months to select plus 3 to launch, zero SLA breaches through cutover</td></tr>
-<tr><td>Sales teams</td><td>SDR team 10 to 15, BDR team about 10. Qualified demand to sales 73% average, 79% peak once, hold the peak unless asked</td></tr>
-<tr><td>Insurance lead redesign</td><td>New business conversion 11% to 13%, lead burn under 1% within two months, team of 50 split Sales and Aftersales</td></tr>
-</table></div></details>
-</section>
-<section class="p" id="rules" hidden>
-<h2>Rules</h2>
-<details open><summary>Rules</summary><div><ul>
-<li>Say “I”, not “we”</li><li>Start with the conclusion</li><li>Answer the actual question, skip the story if it does not fit</li><li>Be honest about what you remember</li><li>Frame impact around the customer</li><li>Hold your questions for the end</li></ul></div></details>
-<details open><summary>Do not say</summary><div><ul>
-<li>That you built the VDC from scratch. Say you shaped it and led the APJC rollout</li>
-<li>That you held a formal partner or channel role. Say your closest work was partner onboarding and lead handoffs at Cisco</li>
-<li>That digital-intent conversion improved. Say you cut the volume and moved agent time to warm leads</li>
-<li>That your Telco director left. Say nothing about it, and mention taking over Indonesia operations only if asked</li>
-<li>Unexplained acronyms such as QD or QSO. Say qualified demand and qualified opportunity in plain words</li>
-<li>That you led the sellers throughout. Say you ran them directly through the early launch, then a regional manager took over as it scaled</li>
-<li>That you managed partners. Say you worked with partners and handled the sellers who fed them</li>
-<li>A deal size for the first Vietnam sale. Say it closed within the first week or two of launch</li></ul></div></details>
-</section>
 
-<section class="p st" id="vdc" hidden>
-<h2>VDC</h2>
-<p class="hook">Thousands of unworked leads became a tiered process. Response went 35% to 100%, accepted opportunities about 40% to 73% against a 60% target.</p>
-<p class="lp">Dive Deep, Have Backbone, Earn Trust, Invent and Simplify</p>
-<details open><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: thousands of leads, unworkable, lost on first call, Marketing complaining</li>
-<li><b>Task</b>: <span class="cf">get every lead worked and stop losing customers on the first call</span></li>
-<li><b>Action</b><ul>
-<li>Raised to director, same pattern in other regions</li>
-<li>Analytics swimlanes, my regional evidence, filter in the middle</li>
-<li>Mine: window approach, handover rules, channel mix with EMEA and AMER</li>
-<li>Analytics: time values, final design</li>
-<li>Rollout across APJC, heads and country leaders, extra work for them</li>
-<li>15 min to 3 days by lead type, call, email, SMS</li>
-</ul></li>
-<li><b>Result</b>: 100% in 6 months, conversion nearly doubled, complaints stopped</li></ul></div></details>
+<section class="p" id="why" hidden>
+<p class="hook">I get people who sell to perform, and I know where it goes wrong. I would bring that to partners in the Philippines.</p>
+<p class="lp">Learn and Be Curious, Hire and Develop the Best, Dive Deep, Ownership</p>
+<details><summary>Glanceable</summary><div><ul>
+<li>Conclusion: natural next step, close to home</li>
+<li>Why the company: Cisco win and loss reviews, offer, breadth, reliability, watched from the other side</li>
+<li>Fit: my journey is people who sell, process, incentives, pipeline, weekly coaching</li>
+<li>Proof: BDRs handed validated leads to Partners, regular Partner updates</li>
+<li>Mistakes I have seen: slacking, inconsistent monitoring, assuming the top performer is fine</li>
+<li>Mine: a top performer I did not check on as often left for a competitor, same role</li>
+<li>Close: catch gaps early, partners more efficient and effective</li></ul></div></details>
 <details><summary>Script</summary><div>
-<p><b>In short.</b> I turned thousands of unworked leads into a tiered process. Response to leads went from 35% to 100% inside their set windows, and the share of Level 1 qualified leads that Level 2 accepted as real opportunities went from about 40% to 73%, against a target of 60%.</p>
-<p><b>Situation.</b> At Cisco APJC my team was handed thousands of leads from Marketing that couldn’t all be worked. We were losing customers on the first call, and Marketing kept saying leads weren’t handled.</p>
-<p><b>Task.</b> <span class="cf">I needed every lead worked and no more customers lost on that first call.</span></p>
-<p><b>Action.</b> I raised it with my director, who found the same pattern in other regions. I gave Analytics the regional evidence and they identified the lead swimlanes. I pushed for a filter in the middle.</p>
-<p>My part was the response-window approach, with Analytics setting the time values, the handover rules, and the channel mix, which I built with my EMEA and AMER counterparts. Then I shaped, influenced and led the APJC rollout, talking to business heads and country leaders first because it added work for them. Windows ran from 15 minutes to three business days depending on lead type, and we used calls, email, and SMS accordingly.</p>
-<p><b>Result.</b> Within six months every lead was worked inside its window, and Marketing stopped complaining.</p></div></details>
-</section>
-
-<section class="p st" id="vdce" hidden>
-<h2>VDCE</h2>
-<p class="hook">I defined what every lead had to carry before handover, then ran a monthly review showing how campaigns actually converted.</p>
-<p class="lp">Dive Deep, Insist on the Highest Standards, Frugality, Earn Trust</p>
-<details open><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: no checklist, manual handoffs</li>
-<li><b>Task</b>: <span class="cf">make handoffs consistent and show Marketing what actually converts</span></li>
-<li><b>Action</b><ul>
-<li>Standards: date (sets priority), source, history, size, target market, what the customer saw</li>
-<li>Ticket flow with completion commitments</li>
-<li>Monthly heads review, conversion not impressions, budget can move before quarter end</li>
-<li>Wake-up: digital-intent leads not converting</li>
-<li>Cut volume, agents to warm leads, clearer vendor briefs, event changes</li></ul></li>
-<li><b>Result</b>: Qualified Demand up 19%</li>
-<li>Lesson: reduce waste</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I defined what every lead had to carry before Marketing handed it over, then set up a monthly review that showed Marketing how their campaigns actually converted.</p>
-<p><b>Situation.</b> After the VDC went live there was still no clear checklist of what to submit or where to send it, so handoffs were manual.</p>
-<p><b>Task.</b> <span class="cf">I needed to make the handoffs consistent and show Marketing what actually converted.</span></p>
-<p><b>Action.</b> I set standards for what Marketing had to capture during the event, such as when the lead was gathered, where it came from, its history, and what the customer had seen. I built a ticket process with completion commitments.</p>
-<p>I also ran a monthly review with the heads, showing conversion instead of engagements and impressions. It showed digital-intent leads, like event business cards and freebie sign-ups, weren’t converting however we reached them. We cut how many we pursued, moved agent time to warm leads, briefed vendors more clearly, and changed how events collected contacts.</p>
-<p><b>Result.</b> In the year I remember best, Qualified Demand was 19% higher than the year before. What I took away is to reduce waste so effort goes where it matters.</p></div></details>
+<p>This role is the natural next step for me, and <span class="cf">[Company]</span> is where I want to do it. At Cisco, in our how-we-win, how-we-lost reviews, <span class="cf">[Company]</span> kept coming up for the strength of its offer, its breadth, and its reputation for reliability. I watched that from the other side. I am Filipino and I started my career in the Philippines, so this one is close to home.</p>
+<p>My whole career has been about getting people who sell to perform. I have built the processes they work from, designed how they are incentivised, prepared the pipeline they work, and coached them every week. At Cisco, our BDRs closed validated leads and handed them to Partners to complete the sale, and I took regular updates from those Partners.</p>
+<p>I have also seen where it goes wrong. Slacking that goes unnoticed. Monitoring that is not consistent. And assuming the top performer is fine. I saw that one first-hand. A top performer we did not check in on as often left for a competitor, in the same role. I build the rhythm now to catch those early.</p>
+<p>I would bring that view to your partners in the Philippines, to help them sell more efficiently and effectively.</p></div></details>
 <details><summary>If asked</summary><div><ul>
-<li>The cut: not mine alone, budgets moved, consistent figures were their reference, contract agents became permanent</li>
-<li>The cost: lower but better volume, new problem is better warm engagements</li></ul></div></details>
-</section>
-
-<section class="p st" id="telco" hidden>
-<h2>Telco</h2>
-<p class="hook">A failing 24/7 telco account, turned around. The client asked me to build a new site within six months and the team grew from 50 to 300.</p>
-<p class="lp">Customer Obsession, Bias for Action, Dive Deep, Have Backbone, Deliver Results</p>
-<details open><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: day 2, 8am, agents stopped taking calls, CEO on site</li>
-<li>Day 1: SLAs just short of target, missed every month, no alarm until the client was unhappy</li>
-<li>Real issues: facilities, unclear measures, no incentives</li>
-<li><b>Task</b>: <span class="cf">take over the failing account and get agents back on the phones</span></li>
-<li><b>Action</b><ul>
-<li>Split: CEO to client CEO, me to client manager and agents</li>
-<li>Mid-day update, regular updates committed</li>
-<li>Motivate: used being new, asked for a chance to deliver by a committed timeframe, no change then we gather again</li>
-<li>Their part: keep to schedules, theirs to own and fix, treated as managers of their own time, esp. the vocal ones</li>
-<li>Realistic SLAs, trackers, dashboards, pushed back on targets</li>
-<li>90% answered, 5% abandoned max, 80/20</li>
-<li>Taught rostering and call swings</li>
-<li>Quality score aligned to CSAT and NPS</li></ul></li>
-<li><b>Result</b>: failing to passing, new site, 50 to 300, client reference</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I took over a failing 24/7 telco account on a day agents stopped taking calls, and we turned it around. Within six months the client asked me to help build a new site, and the team grew from 50 to 300.</p>
-<p><b>Situation.</b> On my second day, with my CEO on site, agents gathered at 8am and stopped picking up. The day before, I’d seen that SLAs were just short of target and missed every month, which is why nothing had set off an alarm until the client got unhappy. I read the room. The agents had real issues that had built up, such as basic facilities, unclear performance measures, and no incentives.</p>
-<p><b>Task.</b> <span class="cf">I had to get agents back on the phones and turn the account around.</span></p>
-<p><b>Action.</b> My CEO took the call with the client’s CEO. I took the client’s manager and the agents. By mid-day I’d updated both and committed to regular updates until agents were back. I used being new to ask the agents for a chance to deliver what I’d promised, by a committed timeframe, and if they saw no change, we would gather again. But I needed them to do their part too, so I talked to them like managers of their own time, especially the ones who were vocal about what they wanted, and made it theirs to own and fix, not only ours, including keeping to their schedules. Then I worked with the client’s manager on realistic SLAs, set up trackers and dashboards, and pushed back on unreasonable targets. We tracked three basics, 90% answered, no more than 5% abandoned, and 80% answered in 20 seconds. I showed the team how to roster and swing calls until they could run it themselves. I also realigned the quality score to how customers measure us.</p>
-<p><b>Result.</b> The mood moved from problem-finding to solution-making in days. The account went from failing to passing, with a few hard days left, and the client now uses us as a turnaround reference.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>How did you motivate the group: used being new, committed timeframe, no change then we gather again, made it theirs to own, treated them as managers of their own time</li>
-<li>For collaboration, use the VDC story with the EMEA and AMER counterparts</li></ul></div></details>
+<li>Where are you based: I am in Singapore now and eager to return home to the Philippines</li>
+<li>Formal partner role: no, see the Partner tab for the closest work</li>
+<li>The top performer: full story under Mistake, tab 2, employer only if asked</li>
+<li>If time is short: cut the Cisco handover sentence first, keep the mistakes line</li></ul></div></details>
 </section>
 
 <section class="p" id="mistake" hidden>
-<h2>Mistake</h2>
 <div class="sub"><button class="stab" data-s="mistake1">Mistake 1</button><button class="stab" data-s="mistake2">Mistake 2</button></div>
 <p class="lp hint">Pick a story above.</p>
 <div class="sp" id="mistake1" hidden>
 <p class="hook">A convenient decision cost me the client’s trust. I have never left a client out of a decision since.</p>
 <p class="lp">Ownership, Earn Trust, Learn and Be Curious</p>
-<details open><summary>Glanceable</summary><div><ul>
+<details><summary>Glanceable</summary><div><ul>
 <li><b>Situation</b>: new to country, dotted line to the operations director</li>
 <li>Her call: target above contract as a buffer, tell client later</li>
 <li><b>Task</b>: my focus was fixing the floor</li>
@@ -219,7 +139,7 @@ td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first
 <p class="lp">Ownership, Learn and Be Curious, Hire and Develop the Best</p>
 <details><summary>Glanceable</summary><div><ul>
 <li><b>Situation</b>: top performer, exceeded target every time, applauded for it</li>
-<li><b>Task</b>: <span class="cf">keep my best seller engaged and growing</span></li>
+<li><b>Task</b>: keep my best seller engaged and growing</li>
 <li><b>Action</b><ul>
 <li>Same routine as everyone else</li>
 <li>Checked in on her less, a good number looked fine</li>
@@ -229,7 +149,7 @@ td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first
 <details><summary>Script</summary><div>
 <p><b>In short.</b> A top performer on my team left for a competitor because I treated a good number as proof she was fine. I now check on my best people as often as anyone.</p>
 <p><b>Situation.</b> She exceeded target every time, and we applauded her for it.</p>
-<p><b>Task.</b> <span class="cf">I was responsible for keeping my best seller engaged and growing.</span></p>
+<p><b>Task.</b> I was responsible for keeping my best seller engaged and growing.</p>
 <p><b>Action.</b> I ran the same routine for her as for everyone else, except I checked in on her less, because she kept exceeding target. I think I missed two things. I never gave her a promise of growth, and I did not hear enough of what she needed.</p>
 <p><b>Result.</b> She left for a competitor, in the same role.</p>
 <p><b>Lesson.</b> Now I check in on my top performers on a set rhythm, ask what they need and where they want to grow, and I do not take a good number as the sign that someone is fine.</p></div></details>
@@ -240,184 +160,21 @@ td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first
 </div>
 </section>
 
-<section class="p st" id="partner" hidden>
-<h2>Partner</h2>
-<p class="hook">No formal partner role. The closest was onboarding partners at Cisco.</p>
-<p class="lp">Honest answer, do not stretch it</p>
-<details open><summary>Glanceable</summary><div><ul>
-<li>No formal partner or channel role</li>
-<li>Cisco: onboarded partners onto the VDC platform, better incentives</li>
-<li>BDRs passed leads to partners who booked the deals</li>
-<li>Vendor briefs changed using conversion data</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p>I haven’t held a formal partner or channel role. The closest was at Cisco, where I onboarded partners onto the VDC platform and worked on how they were better incentivised. Our BDRs passed leads to partners who booked the deals, so I managed that handoff. I also used data to change how our vendors worked, with a clearer brief based on what actually converted.</p></div></details>
-</section>
-
-<section class="p" id="why" hidden>
-<h2>Why role</h2>
-<p class="hook">I get people who sell to perform, and I know where it goes wrong. I would bring that to partners in the Philippines.</p>
-<p class="lp">Learn and Be Curious, Hire and Develop the Best, Dive Deep, Ownership</p>
-<details><summary>Glanceable</summary><div><ul>
-<li>Conclusion: natural next step, close to home</li>
-<li>Why the company: Cisco win and loss reviews, offer, breadth, reliability, watched from the other side</li>
-<li>Fit: my journey is people who sell, process, incentives, pipeline, weekly coaching</li>
-<li>Proof: BDRs handed validated leads to Partners, regular Partner updates</li>
-<li>Mistakes I have seen: slacking, inconsistent monitoring, assuming the top performer is fine</li>
-<li>Mine: a top performer I did not check on as often left for a competitor, same role</li>
-<li>Close: catch gaps early, partners more efficient and effective</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p>This role is the natural next step for me, and <span class="cf">[Company]</span> is where I want to do it. At Cisco, in our how-we-win, how-we-lost reviews, <span class="cf">[Company]</span> kept coming up for the strength of its offer, its breadth, and its reputation for reliability. I watched that from the other side. I am Filipino and I started my career in the Philippines, so this one is close to home.</p>
-<p>My whole career has been about getting people who sell to perform. I have built the processes they work from, designed how they are incentivised, prepared the pipeline they work, and coached them every week. At Cisco, our BDRs closed validated leads and handed them to Partners to complete the sale, and I took regular updates from those Partners.</p>
-<p>I have also seen where it goes wrong. Slacking that goes unnoticed. Monitoring that is not consistent. And assuming the top performer is fine. I saw that one first-hand. A top performer we did not check in on as often left for a competitor, in the same role. I build the rhythm now to catch those early.</p>
-<p>I would bring that view to your partners in the Philippines, to help them sell more efficiently and effectively.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Where are you based: I am in Singapore now and eager to return home to the Philippines</li>
-<li>Formal partner role: no, see the Partner tab for the closest work</li>
-<li>The top performer: full story under Mistake, tab 2, employer only if asked</li>
-<li>If time is short: cut the Cisco handover sentence first, keep the mistakes line</li></ul></div></details>
-</section>
-
-<section class="p st" id="hubs" hidden>
-<h2>Hubs</h2>
-<p class="hook">I took ten fragmented sites down to three hubs with one vendor and zero SLA breaches through cutover, and sales never stopped.</p>
-<p class="lp">Customer Obsession, Dive Deep, Frugality, Ownership, Insist on the Highest Standards, Earn Trust</p>
-<details><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: uneven teams in almost every APJC country, little coordination, same patchwork in EMEA and AMER</li>
-<li><b>Task</b>: coordination, efficiency, budget, sales still running</li>
-<li><b>Action</b><ul>
-<li>Diagnose: BPO eyes on waste, Six Sigma, conversion by country, trim China and India first, smaller countries cover each other</li>
-<li>Redesign: keep India, China and Singapore, leader budgets for it, dashboards, tools, swimlanes</li>
-<li>Vendor: easy way was keep existing, workshops pointed to one, RFP to 12, I ran evaluation and site visits, 3 months to select, 3 to launch</li>
-<li>Singapore: skeptical on cost, vendor won me on languages and premium brand</li>
-<li>Sales kept running: same leads, same events, categorise and prioritise, marketers and country heads in early, targets held, daily tracking</li>
-<li>Pushback: existing agents, firm and fair, performers offered the move</li>
-<li>Near miss: vendor wanted own sites and training, back to why, Cisco sites, tools, people, co-trained</li></ul></li>
-<li><b>Result</b>: 10 to 3, one vendor, zero SLA breaches</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I took ten fragmented sites down to three hubs in China, India and Singapore, with one vendor and zero SLA breaches through cutover, while sales kept running.</p>
-<p><b>Situation.</b> I inherited marketing call centre teams in almost every APJC country, uneven in size and barely coordinated, with the same patchwork in EMEA and AMER.</p>
-<p><b>Task.</b> My job was to improve coordination, efficiency and budget use without stopping sales.</p>
-<p><b>Action.</b> I used Six Sigma tools to see which countries converted and what headcount was sustainable. I trimmed the overstaffed sites first, China and India, and had the smaller countries cover each other. That is when it made sense to change the whole approach, so I proposed keeping India, China and one more hub. My leader budgeted for it, along with new dashboards, tools and swimlanes.</p>
-<p>The easy option on vendors was to keep the existing ones. But in our workshops it kept showing that one vendor would make the Cisco experience far more consistent. I sent an RFP to 12 vendors, some existing and some new, and led the regional evaluation and site visits. Selection took three months and the launch another three. I was skeptical about Singapore because of cost, but the winning vendor showed a compelling way to run all the languages there while keeping Cisco a premium brand.</p>
-<p>Sales could not pause. Marketing kept running events and the same leads kept coming, so on a slimmer team I categorised and prioritised leads and focused on the types worth converting. I brought the marketers and country heads in early because it touched their numbers, held targets steady, and tracked results daily.</p>
-<p>The hardest part was the existing agents. I was firm and fair. They still had to hit daily targets, and the performers were offered a move to the new vendor.</p>
-<p>The near miss was the vendor wanting to run the sites and all the training themselves. I went back to why we were doing this, which was customers getting the same quality wherever they called in. So the centres sat in Cisco sites, on Cisco tools, around Cisco people, co-trained by Cisco experts.</p>
-<p><b>Result.</b> Ten sites became three hubs in China, India and Singapore, with one vendor and zero SLA breaches through cutover.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Why not keep the existing vendors: easy, but workshops showed one vendor gave a more consistent customer experience</li>
-<li>Hardest part: the existing agents</li>
-<li>Did the one vendor also cover regions beyond the three hubs: yes, one vendor across the hubs and across regions</li></ul></div></details>
-</section>
-
-<section class="p st" id="sales" hidden>
-<h2>Sales</h2>
-<p class="hook">I ran the sellers directly through the early launch, set quota and forecast every quarter, and qualified demand to sales averaged 73%.</p>
-<p class="lp">Deliver Results, Dive Deep, Earn Trust, Ownership</p>
-<details><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: ran sellers directly through the early launch, regional manager took over at scale</li>
-<li>SDR: level 1, team of 10 to 15, cleaned VDC leads, first contact, right channel</li>
-<li>BDR: about 10, validated leads, close, hand to Partners</li>
-<li>Pipeline: quarterly, up to USD 50M</li>
-<li><b>Task</b>: set quota and forecast every quarter</li>
-<li><b>Action</b><ul>
-<li>Quota: BDR headcount, year over year, events, seasonality, low first half, high second half</li>
-<li>Cadence: weekly commit, tight on some, loose on performers, feeds the leadership forecast</li>
-<li>Also: weekly coaching, recognition always in place, Partner updates on handed-over leads</li>
-<li>Shortfall: flag early, or my overconfidence, squeeze elsewhere</li></ul></li>
-<li><b>Result</b>: 73% average, 79% only if asked</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I ran the sellers directly through the early launch, set quota and forecast every quarter, and qualified demand to sales averaged 73%.</p>
-<p><b>Situation.</b> I ran the sellers directly through the early launch, and a regional manager took over as it scaled. There were two layers. SDRs, a team of 10 to 15, were level one. They took the raw leads the VDC process had cleaned up and made first contact on whichever channel fit. BDRs, about 10, received validated leads, closed the deal and handed it to Partners for the actual sale. I ran against a quarterly pipeline of up to USD 50M.</p>
-<p><b>Task.</b> I set quota and forecast every quarter.</p>
-<p><b>Action.</b> I set quota at the start of each quarter from BDR headcount, using year over year, upcoming events and seasonality, which runs lower in the first half and higher in the second. I made a weekly commit with each BDR, watched some more tightly and gave performers more room, and took those numbers to leadership as the forecast. Coaching was weekly and recognition was always in place. I also took regular updates from Partners on what happened to the leads we passed.</p>
-<p>When numbers fell short, either I knew early and told leadership in advance, or I had been overconfident on a sale that did not land. Either way I looked for where else to squeeze to recover.</p>
-<p><b>Result.</b> Qualified demand to sales averaged 73%.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Biggest miss: <span class="cf">I do not recall one I did not recover before quarter end, say it that way, not as never</span></li>
-<li>The 79% peak: likely good launch timing, do not oversell it</li>
-<li>Events slipping: at most moved to the next month</li>
-<li>Lead moves between reps: happened, not a heavy routine</li></ul></div></details>
-</section>
-
-<section class="p st" id="scale" hidden>
-<h2>Scale</h2>
-<p class="hook">I launched contact centre sites in four cities from scratch and grew the workforce from 300 to 1,500 while holding SLA and quality.</p>
-<p class="lp">Think Big, Deliver Results, Insist on the Highest Standards, Hire and Develop the Best</p>
-<details><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: $27M TCV portfolio, full P&amp;L, four sites to launch from scratch, Jakarta, Bandung, Hanoi, Ho Chi Minh City</li>
-<li><b>Task</b>: <span class="cf">launch each site and grow the workforce while holding SLA and quality</span></li>
-<li><b>Action</b><ul>
-<li>Before each go-live: plan, resources, procurement, facilities, telco, training</li>
-<li>Service transition: incident handling, escalation standards</li>
-<li>People side: hiring process, job descriptions, onboarding, curriculum, offboarding, House Rules</li>
-<li>Same quality standards across every site, audit-ready</li></ul></li>
-<li><b>Result</b>: 300 to 1,500 across Singapore and Indonesia, SLA and quality held</li>
-<li><span class="cf">Needs your detail: hardest site, what I did first, what nearly went wrong</span></li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I launched contact centre sites in four cities from scratch and grew the workforce from 300 to 1,500 across Singapore and Indonesia, while holding SLA and quality.</p>
-<p><b>Situation.</b> I owned a $27M portfolio with full P&amp;L, and I had four sites to launch from scratch, Jakarta, Bandung, Hanoi and Ho Chi Minh City.</p>
-<p><b>Task.</b> <span class="cf">I had to launch each site and grow the workforce while holding SLA and quality.</span></p>
-<p><b>Action.</b> For each site I planned the launch, allocated resources, and lined up facilities, telco, procurement and training ahead of go-live. I set service transition standards for incident handling and escalation, and I built the people side, the hiring process, job descriptions, onboarding, training curriculum, offboarding and House Rules with sanctions. I rolled out the same quality standards across all sites so each one was audit-ready.</p>
-<p><span class="cf">Add what I did first, the hardest site, and what nearly went wrong.</span></p>
-<p><b>Result.</b> The workforce grew from 300 to 1,500 across Singapore and Indonesia, and SLA and quality held.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Do not mix with the Telco story, that team grew from 50 to 300 on one account</li>
-<li>Clients on the portfolio: see the CV for the sector list</li></ul></div></details>
-</section>
-
-<section class="p st" id="leads" hidden>
-<h2>Leads</h2>
-<p class="hook">I redesigned lead handling in a regulated insurance contact centre. New business conversion went from 11% to 13% and lead burn fell under 1% within two months.</p>
-<p class="lp">Dive Deep, Invent and Simplify, Ownership, Deliver Results</p>
-<details><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: team of 50, half Sales, half Aftersales, I owned both, cold leads were where effort was lost</li>
-<li><b>Task</b>: <span class="cf">lift new business conversion and stop leads going to waste</span></li>
-<li><b>Action</b><ul>
-<li>Redesigned cold lead handling, launched a dedicated Winback team</li>
-<li>Tiered commission across Hot, Warm and Cold</li>
-<li>Real-time dashboard, Lean Six Sigma, same-day visibility</li></ul></li>
-<li><b>Result</b>: 11% to 13%, lead burn under 1% within two months</li>
-<li><span class="cf">Needs your detail: what I saw first, who pushed back, how sellers reacted</span></li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I redesigned how leads were handled in a regulated insurance contact centre, and new business conversion went from 11% to 13% with lead burn under 1% within two months.</p>
-<p><b>Situation.</b> I owned a team of 50, half Sales and half Aftersales. Cold leads were where effort was being lost.</p>
-<p><b>Task.</b> <span class="cf">I needed to lift new business conversion and stop leads going to waste.</span></p>
-<p><b>Action.</b> I redesigned how they were handled and launched a dedicated Winback team to recover them. I built a tiered commission framework across Hot, Warm and Cold leads so sellers had a reason to prioritise the right ones. And I built a real-time dashboard using Lean Six Sigma methods so leadership could see pipeline health, seller performance and conversion the same day.</p>
-<p><span class="cf">Add what I saw first and how the sellers reacted.</span></p>
-<p><b>Result.</b> New business conversion went from 11% to 13%, and lead burn fell under 1% within two months.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Lead burn in plain words: <span class="cf">confirm your definition</span></li>
-<li>Scale: monthly targets of $1 to 1.5M new business and about $2M renewals, within a $40M annual book</li></ul></div></details>
-</section>
-
-<section class="p st" id="hiring" hidden>
-<h2>Hiring</h2>
-<p class="hook">I opened a sales-only hiring requirement to anyone who could express themselves on the phone, and a seller with a hospitality background closed the first deal in Vietnam within the first week or two.</p>
-<p class="lp">Have Backbone, Bias for Action, Hire and Develop the Best, Customer Obsession</p>
-<details><summary>Glanceable</summary><div><ul>
-<li><b>Situation</b>: Singapore sales team, ASEAN, NZ, JP, KR, initial VDC launch</li>
-<li>Constraint: vendor wanted sales-only, premium showcase, good intent, visa issues for Vietnamese locals</li>
-<li><b>Task</b>: <span class="cf">staff the new team with strong sellers</span></li>
-<li><b>Action</b><ul>
-<li>Move: weeks with no candidate, I opened the criteria, sales experience optional, phone interview expression</li>
-<li>Why she fit: hospitality, many campaigns, captures attention, right questions, does not rush</li>
-<li>Principle: teach technique and tracking later</li></ul></li>
-<li><b>Result</b>: first Vietnam deal, week one or two</li>
-<li>Ripple: vendor opened up, wider pool, wider exposures</li></ul></div></details>
-<details><summary>Script</summary><div>
-<p><b>In short.</b> I opened a sales-only hiring requirement to anyone who could express themselves well on a phone interview, and a seller with a hospitality background closed the first deal in Vietnam within the first week or two of launch.</p>
-<p><b>Situation.</b> When we launched the VDC, the first sales team sat in Singapore and covered ASEAN, New Zealand, Japan and Korea. The vendor required sales experience for every seller. They had good intent and were showing us what a premium customer gets. But they had a real recruiting problem, including visa issues for Vietnamese candidates working in Singapore.</p>
-<p><b>Task.</b> <span class="cf">I needed to staff the new team with strong sellers.</span></p>
-<p><b>Action.</b> After weeks without a good candidate, I offered to open the criteria. Sales experience became optional. What mattered was whether someone could express themselves on a phone interview.</p>
-<p>That is how I ended up with a Vietnamese seller with a hospitality background. She had handled different campaigns and knew how to capture a customer’s attention. Sales technique and tracking could be taught later. She asked the right questions and did not rush, which the ASEAN market needs.</p>
-<p><b>Result.</b> She closed the first deal in Vietnam within the first week or two of launch. After that, the vendor was open to different backgrounds, and I got a wider pool and people with different exposures to learn from.</p></div></details>
-<details><summary>If asked</summary><div><ul>
-<li>Deal size: <span class="cf">not remembered, do not quote one</span></li>
-<li>Why it matters for partners: I challenged a partner’s requirement respectfully, offered a fix, and they changed how they hired</li></ul></div></details>
+<section class="p" id="questions" hidden>
+<p class="hook">Hold them to the end. Pick two or three per person, and skip anything the job description already answers.</p>
+<p class="lp">Helen comes first as the recruiter. Sascha is the hiring manager and comes later.</p>
+<details><summary>For Helen, the recruiter</summary><div><ul>
+<li>What does the process look like after this call, and what is the timeline?</li>
+<li>What profile has done well in this role, from the people hired before?</li>
+<li>Is there anything about my background you would like me to clarify before the next stage?</li></ul></div></details>
+<details><summary>For Sascha, the hiring manager</summary><div><ul>
+<li>Which partners matter most in the Philippines right now, and where is the biggest gap?</li>
+<li>What would you want to see from me in the first 90 days?</li>
+<li>How is partner performance measured in the country today?</li>
+<li>What makes someone struggle in this role?</li></ul></div></details>
 </section>
 
 <section class="p" id="lp" hidden>
-<h2>Principles</h2>
 <p class="hook">Pick the story first, then name the principle only if they ask.</p>
 <p class="lp"><span class="cf">Check this list against the prep email before the call</span></p>
 <details><summary>By story</summary><div><table>
@@ -453,51 +210,359 @@ td{padding:7px 4px;border-bottom:1px solid var(--bd);vertical-align:top}td:first
 </table></div></details>
 </section>
 
-<section class="p" id="questions" hidden>
-<h2>Questions</h2>
-<p class="hook">Hold them to the end. Pick two or three per person, and skip anything the job description already answers.</p>
-<p class="lp">Helen comes first as the recruiter. Sascha is the hiring manager and comes later.</p>
-<details><summary>For Helen, the recruiter</summary><div><ul>
-<li>What does the process look like after this call, and what is the timeline?</li>
-<li>What profile has done well in this role, from the people hired before?</li>
-<li>Is there anything about my background you would like me to clarify before the next stage?</li></ul></div></details>
-<details><summary>For Sascha, the hiring manager</summary><div><ul>
-<li>Which partners matter most in the Philippines right now, and where is the biggest gap?</li>
-<li>What would you want to see from me in the first 90 days?</li>
-<li>How is partner performance measured in the country today?</li>
-<li>What makes someone struggle in this role?</li></ul></div></details>
+<section class="p" id="rules" hidden>
+<details><summary>Rules</summary><div><ul>
+<li>Say “I”, not “we”</li><li>Start with the conclusion</li><li>Answer the actual question, skip the story if it does not fit</li><li>Be honest about what you remember</li><li>Frame impact around the customer</li><li>Hold your questions for the end</li></ul></div></details>
+<details><summary>Do not say</summary><div><ul>
+<li>That you built the VDC from scratch. Say you shaped it and led the APJC rollout</li>
+<li>That you held a formal partner or channel role. Say your closest work was partner onboarding and lead handoffs at Cisco</li>
+<li>That digital-intent conversion improved. Say you cut the volume and moved agent time to warm leads</li>
+<li>That your Telco director left. Say nothing about it, and mention taking over Indonesia operations only if asked</li>
+<li>Unexplained acronyms such as QD or QSO. Say qualified demand and qualified opportunity in plain words</li>
+<li>That you led the sellers throughout. Say you ran them directly through the early launch, then a regional manager took over as it scaled</li>
+<li>That you managed partners. Say you worked with partners and handled the sellers who fed them</li>
+<li>A deal size for the first Vietnam sale. Say it closed within the first week or two of launch</li></ul></div></details>
+</section>
+
+<section class="p" id="numbers" hidden>
+<details><summary>Key figures</summary><div><table>
+<tr><td>Lead response</td><td>35% to 100% inside the set windows, within 6 months of rollout</td></tr>
+<tr><td>Accepted as real opportunity</td><td>About 40% to 73%, target was 60%. Say “qualified opportunity” in plain words</td></tr>
+<tr><td>Qualified Demand</td><td>19% higher than the year before</td></tr>
+<tr><td>Response windows</td><td>15 minutes, 1 day, 3 business days by lead type</td></tr>
+<tr><td>Telco SLAs</td><td>90% answered, 5% abandoned max, 80% in 20 seconds</td></tr>
+<tr><td>Telco team</td><td>50 to 300 people, plus a new site built</td></tr>
+<tr><td>Cisco sales teams</td><td>10 to 15 sellers, quarterly pipeline up to USD 50M, software, hardware and cloud</td></tr>
+<tr><td>Teleperformance</td><td>$27M TCV, full P&amp;L, 300 to 1,500 FTEs, four new sites</td></tr>
+<tr><td>Hub consolidation</td><td>10 sites to 3 hubs (China, India, Singapore), one vendor, RFP to 12 vendors, 3 months to select plus 3 to launch, zero SLA breaches through cutover</td></tr>
+<tr><td>Sales teams</td><td>SDR team 10 to 15, BDR team about 10. Qualified demand to sales 73% average, 79% peak once, hold the peak unless asked</td></tr>
+<tr><td>Insurance lead redesign</td><td>New business conversion 11% to 13%, lead burn under 1% within two months, team of 50 split Sales and Aftersales</td></tr>
+<tr><td>Lead burn</td><td>Leads not contacted within 3 days. Around 90% down to under 1% after proper categorisation</td></tr>
+</table></div></details>
 </section>
 
 <section class="p" id="open" hidden>
-<h2>Open items</h2>
 <p class="hook">Do not say anything marked as confirm until it is checked.</p>
-<details open><summary>To confirm or recover</summary><div><ul>
+<details><summary>To confirm or recover</summary><div><ul>
 <li>Top performer story: employer decided, hold it until asked</li>
-<li><span class="cf">Task lines</span> in VDC, VDCE, Telco, Scale, Leads, Hiring and Mistake 2 are my wording, confirm or fix</li>
-<li><span class="cf">Lead burn</span>, your plain-words definition</li>
-<li><span class="cf">[Company]</span> in the Why role script, fill in per interview</li>
+<li><span class="cf">Mistake 2</span>, decide which role and when before the call</li>
+<li><span class="cf">[Company]</span> in the Why script, fill in per interview</li>
 <li>Check old QBR decks, Domo or Tableau exports, emails, and Joline</li></ul></div></details>
-<details open><summary>Still to cover</summary><div><ul>
-<li><span class="cf">Scale and Leads</span> are drafted from the CV only, add your own detail</li>
+<details><summary>Still to cover</summary><div><ul>
+<li>Scale and Leads are drafted from the CV only, add your own detail later</li>
 <li>Mock phone screen, by voice</li></ul></div></details>
+<details><summary>Story shades</summary><div><ul>
+<li>Mint, Cisco (VDC, VDCE, Hiring, Sales, Hubs)</li>
+<li>Lime, Teleperformance (Telco, Scale)</li>
+<li>Aqua, Auto and General (Leads)</li>
+<li>Pale green, no employer (Partner)</li></ul></div></details>
+</section>
+
+<section class="p c1" id="vdc" hidden>
+<p class="hook">Thousands of unworked leads became a tiered process. Response went 35% to 100%, accepted opportunities about 40% to 73% against a 60% target.</p>
+<p class="lp">Dive Deep, Have Backbone, Earn Trust, Invent and Simplify</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: thousands of leads, unworkable, lost on first call, Marketing complaining</li>
+<li><b>Task</b>: get every lead worked and stop losing customers on the first call</li>
+<li><b>Action</b><ul>
+<li>Raised to director, same pattern in other regions</li>
+<li>Analytics swimlanes, my regional evidence, filter in the middle</li>
+<li>Mine: window approach, handover rules, channel mix with EMEA and AMER</li>
+<li>Analytics: time values, final design</li>
+<li>Rollout across APJC, heads and country leaders, extra work for them</li>
+<li>15 min to 3 days by lead type, call, email, SMS</li>
+</ul></li>
+<li><b>Result</b>: 100% in 6 months, conversion nearly doubled, complaints stopped</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I turned thousands of unworked leads into a tiered process. Response to leads went from 35% to 100% inside their set windows, and the share of Level 1 qualified leads that Level 2 accepted as real opportunities went from about 40% to 73%, against a target of 60%.</p>
+<p><b>Situation.</b> At Cisco APJC my team was handed thousands of leads from Marketing that couldn’t all be worked. We were losing customers on the first call, and Marketing kept saying leads weren’t handled.</p>
+<p><b>Task.</b> I needed every lead worked and no more customers lost on that first call.</p>
+<p><b>Action.</b> I raised it with my director, who found the same pattern in other regions. I gave Analytics the regional evidence and they identified the lead swimlanes. I pushed for a filter in the middle.</p>
+<p>My part was the response-window approach, with Analytics setting the time values, the handover rules, and the channel mix, which I built with my EMEA and AMER counterparts. Then I shaped, influenced and led the APJC rollout, talking to business heads and country leaders first because it added work for them. Windows ran from 15 minutes to three business days depending on lead type, and we used calls, email, and SMS accordingly.</p>
+<p><b>Result.</b> Within six months every lead was worked inside its window, and Marketing stopped complaining.</p></div></details>
+</section>
+
+<section class="p c1" id="vdce" hidden>
+<p class="hook">I defined what every lead had to carry before handover, then ran a monthly review showing how campaigns actually converted.</p>
+<p class="lp">Dive Deep, Insist on the Highest Standards, Frugality, Earn Trust</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: no checklist, manual handoffs</li>
+<li><b>Task</b>: make handoffs consistent and show Marketing what actually converts</li>
+<li><b>Action</b><ul>
+<li>Standards: date (sets priority), source, history, size, target market, what the customer saw</li>
+<li>Ticket flow with completion commitments</li>
+<li>Monthly heads review, conversion not impressions, budget can move before quarter end</li>
+<li>Wake-up: digital-intent leads not converting</li>
+<li>Cut volume, agents to warm leads, clearer vendor briefs, event changes</li></ul></li>
+<li><b>Result</b>: Qualified Demand up 19%</li>
+<li>Lesson: reduce waste</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I defined what every lead had to carry before Marketing handed it over, then set up a monthly review that showed Marketing how their campaigns actually converted.</p>
+<p><b>Situation.</b> After the VDC went live there was still no clear checklist of what to submit or where to send it, so handoffs were manual.</p>
+<p><b>Task.</b> I needed to make the handoffs consistent and show Marketing what actually converted.</p>
+<p><b>Action.</b> I set standards for what Marketing had to capture during the event, such as when the lead was gathered, where it came from, its history, and what the customer had seen. I built a ticket process with completion commitments.</p>
+<p>I also ran a monthly review with the heads, showing conversion instead of engagements and impressions. It showed digital-intent leads, like event business cards and freebie sign-ups, weren’t converting however we reached them. We cut how many we pursued, moved agent time to warm leads, briefed vendors more clearly, and changed how events collected contacts.</p>
+<p><b>Result.</b> In the year I remember best, Qualified Demand was 19% higher than the year before. What I took away is to reduce waste so effort goes where it matters.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>The cut: not mine alone, budgets moved, consistent figures were their reference, contract agents became permanent</li>
+<li>The cost: lower but better volume, new problem is better warm engagements</li></ul></div></details>
+</section>
+
+<section class="p c1" id="hiring" hidden>
+<p class="hook">I opened a sales-only hiring requirement to anyone who could express themselves on the phone, and a seller with a hospitality background closed the first deal in Vietnam within the first week or two.</p>
+<p class="lp">Have Backbone, Bias for Action, Hire and Develop the Best, Customer Obsession</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: Singapore sales team, ASEAN, NZ, JP, KR, initial VDC launch</li>
+<li>Constraint: vendor wanted sales-only, premium showcase, good intent, visa issues for Vietnamese locals</li>
+<li><b>Task</b>: staff the new team with strong sellers</li>
+<li><b>Action</b><ul>
+<li>Move: weeks with no candidate, I opened the criteria, sales experience optional, phone interview expression</li>
+<li>Why she fit: hospitality, many campaigns, captures attention, right questions, does not rush</li>
+<li>Principle: teach technique and tracking later</li></ul></li>
+<li><b>Result</b>: first Vietnam deal, week one or two</li>
+<li>Ripple: vendor opened up, wider pool, wider exposures</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I opened a sales-only hiring requirement to anyone who could express themselves well on a phone interview, and a seller with a hospitality background closed the first deal in Vietnam within the first week or two of launch.</p>
+<p><b>Situation.</b> When we launched the VDC, the first sales team sat in Singapore and covered ASEAN, New Zealand, Japan and Korea. The vendor required sales experience for every seller. They had good intent and were showing us what a premium customer gets. But they had a real recruiting problem, including visa issues for Vietnamese candidates working in Singapore.</p>
+<p><b>Task.</b> I needed to staff the new team with strong sellers.</p>
+<p><b>Action.</b> After weeks without a good candidate, I offered to open the criteria. Sales experience became optional. What mattered was whether someone could express themselves on a phone interview.</p>
+<p>That is how I ended up with a Vietnamese seller with a hospitality background. She had handled different campaigns and knew how to capture a customer’s attention. Sales technique and tracking could be taught later. She asked the right questions and did not rush, which the ASEAN market needs.</p>
+<p><b>Result.</b> She closed the first deal in Vietnam within the first week or two of launch. After that, the vendor was open to different backgrounds, and I got a wider pool and people with different exposures to learn from.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>Deal size: <span class="cf">not remembered, do not quote one</span></li>
+<li>Why it matters for partners: I challenged a partner’s requirement respectfully, offered a fix, and they changed how they hired</li></ul></div></details>
+</section>
+
+<section class="p c1" id="sales" hidden>
+<p class="hook">I ran the sellers directly through the early launch, set quota and forecast every quarter, and qualified demand to sales averaged 73%.</p>
+<p class="lp">Deliver Results, Dive Deep, Earn Trust, Ownership</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: ran sellers directly through the early launch, regional manager took over at scale</li>
+<li>SDR: level 1, team of 10 to 15, cleaned VDC leads, first contact, right channel</li>
+<li>BDR: about 10, validated leads, close, hand to Partners</li>
+<li>Pipeline: quarterly, up to USD 50M</li>
+<li><b>Task</b>: set quota and forecast every quarter</li>
+<li><b>Action</b><ul>
+<li>Quota: BDR headcount, year over year, events, seasonality, low first half, high second half</li>
+<li>Cadence: weekly commit, tight on some, loose on performers, feeds the leadership forecast</li>
+<li>Also: weekly coaching, recognition always in place, Partner updates on handed-over leads</li>
+<li>Shortfall: flag early, or my overconfidence, squeeze elsewhere</li></ul></li>
+<li><b>Result</b>: 73% average, 79% only if asked</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I ran the sellers directly through the early launch, set quota and forecast every quarter, and qualified demand to sales averaged 73%.</p>
+<p><b>Situation.</b> I ran the sellers directly through the early launch, and a regional manager took over as it scaled. There were two layers. SDRs, a team of 10 to 15, were level one. They took the raw leads the VDC process had cleaned up and made first contact on whichever channel fit. BDRs, about 10, received validated leads, closed the deal and handed it to Partners for the actual sale. I ran against a quarterly pipeline of up to USD 50M.</p>
+<p><b>Task.</b> I set quota and forecast every quarter.</p>
+<p><b>Action.</b> I set quota at the start of each quarter from BDR headcount, using year over year, upcoming events and seasonality, which runs lower in the first half and higher in the second. I made a weekly commit with each BDR, watched some more tightly and gave performers more room, and took those numbers to leadership as the forecast. Coaching was weekly and recognition was always in place. I also took regular updates from Partners on what happened to the leads we passed.</p>
+<p>When numbers fell short, either I knew early and told leadership in advance, or I had been overconfident on a sale that did not land. Either way I looked for where else to squeeze to recover.</p>
+<p><b>Result.</b> Qualified demand to sales averaged 73%.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>Biggest miss: <span class="cf">I do not recall one I did not recover before quarter end, say it that way, not as never</span></li>
+<li>The 79% peak: likely good launch timing, do not oversell it</li>
+<li>Events slipping: at most moved to the next month</li>
+<li>Lead moves between reps: happened, not a heavy routine</li></ul></div></details>
+</section>
+
+<section class="p c1" id="hubs" hidden>
+<p class="hook">I took ten fragmented sites down to three hubs with one vendor and zero SLA breaches through cutover, and sales never stopped.</p>
+<p class="lp">Customer Obsession, Dive Deep, Frugality, Ownership, Insist on the Highest Standards, Earn Trust</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: uneven teams in almost every APJC country, little coordination, same patchwork in EMEA and AMER</li>
+<li><b>Task</b>: coordination, efficiency, budget, sales still running</li>
+<li><b>Action</b><ul>
+<li>Diagnose: BPO eyes on waste, Six Sigma, conversion by country, trim China and India first, smaller countries cover each other</li>
+<li>Redesign: keep India, China and Singapore, leader budgets for it, dashboards, tools, swimlanes</li>
+<li>Vendor: easy way was keep existing, workshops pointed to one, RFP to 12, I ran evaluation and site visits, 3 months to select, 3 to launch</li>
+<li>Singapore: skeptical on cost, vendor won me on languages and premium brand</li>
+<li>Sales kept running: same leads, same events, categorise and prioritise, marketers and country heads in early, targets held, daily tracking</li>
+<li>Pushback: existing agents, firm and fair, performers offered the move</li>
+<li>Near miss: vendor wanted own sites and training, back to why, Cisco sites, tools, people, co-trained</li></ul></li>
+<li><b>Result</b>: 10 to 3, one vendor, zero SLA breaches</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I took ten fragmented sites down to three hubs in China, India and Singapore, with one vendor and zero SLA breaches through cutover, while sales kept running.</p>
+<p><b>Situation.</b> I inherited marketing call centre teams in almost every APJC country, uneven in size and barely coordinated, with the same patchwork in EMEA and AMER.</p>
+<p><b>Task.</b> My job was to improve coordination, efficiency and budget use without stopping sales.</p>
+<p><b>Action.</b> I used Six Sigma tools to see which countries converted and what headcount was sustainable. I trimmed the overstaffed sites first, China and India, and had the smaller countries cover each other. That is when it made sense to change the whole approach, so I proposed keeping India, China and one more hub. My leader budgeted for it, along with new dashboards, tools and swimlanes.</p>
+<p>The easy option on vendors was to keep the existing ones. But in our workshops it kept showing that one vendor would make the Cisco experience far more consistent. I sent an RFP to 12 vendors, some existing and some new, and led the regional evaluation and site visits. Selection took three months and the launch another three. I was skeptical about Singapore because of cost, but the winning vendor showed a compelling way to run all the languages there while keeping Cisco a premium brand.</p>
+<p>Sales could not pause. Marketing kept running events and the same leads kept coming, so on a slimmer team I categorised and prioritised leads and focused on the types worth converting. I brought the marketers and country heads in early because it touched their numbers, held targets steady, and tracked results daily.</p>
+<p>The hardest part was the existing agents. I was firm and fair. They still had to hit daily targets, and the performers were offered a move to the new vendor.</p>
+<p>The near miss was the vendor wanting to run the sites and all the training themselves. I went back to why we were doing this, which was customers getting the same quality wherever they called in. So the centres sat in Cisco sites, on Cisco tools, around Cisco people, co-trained by Cisco experts.</p>
+<p><b>Result.</b> Ten sites became three hubs in China, India and Singapore, with one vendor and zero SLA breaches through cutover.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>Why not keep the existing vendors: easy, but workshops showed one vendor gave a more consistent customer experience</li>
+<li>Hardest part: the existing agents</li>
+<li>Did the one vendor also cover regions beyond the three hubs: yes, one vendor across the hubs and across regions</li></ul></div></details>
+</section>
+
+<section class="p c2" id="telco" hidden>
+<p class="hook">A failing 24/7 telco account, turned around. The client asked me to build a new site within six months and the team grew from 50 to 300.</p>
+<p class="lp">Customer Obsession, Bias for Action, Dive Deep, Have Backbone, Deliver Results</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: day 2, 8am, agents stopped taking calls, CEO on site</li>
+<li>Day 1: SLAs just short of target, missed every month, no alarm until the client was unhappy</li>
+<li>Real issues: facilities, unclear measures, no incentives</li>
+<li><b>Task</b>: take over the failing account and get agents back on the phones</li>
+<li><b>Action</b><ul>
+<li>Split: CEO to client CEO, me to client manager and agents</li>
+<li>Mid-day update, regular updates committed</li>
+<li>Motivate: used being new, asked for a chance to deliver by a committed timeframe, no change then we gather again</li>
+<li>Their part: keep to schedules, theirs to own and fix, treated as managers of their own time, esp. the vocal ones</li>
+<li>Realistic SLAs, trackers, dashboards, pushed back on targets</li>
+<li>90% answered, 5% abandoned max, 80/20</li>
+<li>Taught rostering and call swings</li>
+<li>Quality score aligned to CSAT and NPS</li></ul></li>
+<li><b>Result</b>: failing to passing, new site, 50 to 300, client reference</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I took over a failing 24/7 telco account on a day agents stopped taking calls, and we turned it around. Within six months the client asked me to help build a new site, and the team grew from 50 to 300.</p>
+<p><b>Situation.</b> On my second day, with my CEO on site, agents gathered at 8am and stopped picking up. The day before, I’d seen that SLAs were just short of target and missed every month, which is why nothing had set off an alarm until the client got unhappy. I read the room. The agents had real issues that had built up, such as basic facilities, unclear performance measures, and no incentives.</p>
+<p><b>Task.</b> I had to get agents back on the phones and turn the account around.</p>
+<p><b>Action.</b> My CEO took the call with the client’s CEO. I took the client’s manager and the agents. By mid-day I’d updated both and committed to regular updates until agents were back. I used being new to ask the agents for a chance to deliver what I’d promised, by a committed timeframe, and if they saw no change, we would gather again. But I needed them to do their part too, so I talked to them like managers of their own time, especially the ones who were vocal about what they wanted, and made it theirs to own and fix, not only ours, including keeping to their schedules. Then I worked with the client’s manager on realistic SLAs, set up trackers and dashboards, and pushed back on unreasonable targets. We tracked three basics, 90% answered, no more than 5% abandoned, and 80% answered in 20 seconds. I showed the team how to roster and swing calls until they could run it themselves. I also realigned the quality score to how customers measure us.</p>
+<p><b>Result.</b> The mood moved from problem-finding to solution-making in days. The account went from failing to passing, with a few hard days left, and the client now uses us as a turnaround reference.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>How did you motivate the group: used being new, committed timeframe, no change then we gather again, made it theirs to own, treated them as managers of their own time</li>
+<li>For collaboration, use the VDC story with the EMEA and AMER counterparts</li></ul></div></details>
+</section>
+
+<section class="p c2" id="scale" hidden>
+<p class="hook">I launched contact centre sites in four cities from scratch and grew the workforce from 300 to 1,500 while holding SLA and quality.</p>
+<p class="lp">Think Big, Deliver Results, Insist on the Highest Standards, Hire and Develop the Best</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: $27M TCV portfolio, full P&amp;L, four sites to launch from scratch, Jakarta, Bandung, Hanoi, Ho Chi Minh City</li>
+<li><b>Task</b>: launch each site and grow the workforce while holding SLA and quality</li>
+<li><b>Action</b><ul>
+<li>Before each go-live: plan, resources, procurement, facilities, telco, training</li>
+<li>Service transition: incident handling, escalation standards</li>
+<li>People side: hiring process, job descriptions, onboarding, curriculum, offboarding, House Rules</li>
+<li>Same quality standards across every site, audit-ready</li></ul></li>
+<li><b>Result</b>: 300 to 1,500 across Singapore and Indonesia, SLA and quality held</li>
+</ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I launched contact centre sites in four cities from scratch and grew the workforce from 300 to 1,500 across Singapore and Indonesia, while holding SLA and quality.</p>
+<p><b>Situation.</b> I owned a $27M portfolio with full P&amp;L, and I had four sites to launch from scratch, Jakarta, Bandung, Hanoi and Ho Chi Minh City.</p>
+<p><b>Task.</b> I had to launch each site and grow the workforce while holding SLA and quality.</p>
+<p><b>Action.</b> For each site I planned the launch, allocated resources, and lined up facilities, telco, procurement and training ahead of go-live. I set service transition standards for incident handling and escalation, and I built the people side, the hiring process, job descriptions, onboarding, training curriculum, offboarding and House Rules with sanctions. I rolled out the same quality standards across all sites so each one was audit-ready.</p>
+<p><b>Result.</b> The workforce grew from 300 to 1,500 across Singapore and Indonesia, and SLA and quality held.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>Do not mix with the Telco story, that team grew from 50 to 300 on one account</li>
+<li>Clients on the portfolio: see the CV for the sector list</li></ul></div></details>
+</section>
+
+<section class="p c3" id="leads" hidden>
+<p class="hook">I redesigned lead handling in a regulated insurance contact centre. New business conversion went from 11% to 13% and lead burn fell from around 90% to under 1% within two months.</p>
+<p class="lp">Dive Deep, Invent and Simplify, Ownership, Deliver Results</p>
+<details><summary>Glanceable</summary><div><ul>
+<li><b>Situation</b>: team of 50, half Sales, half Aftersales, I owned both, cold leads were where effort was lost</li>
+<li><b>Task</b>: lift new business conversion and stop leads going to waste</li>
+<li><b>Action</b><ul>
+<li>Redesigned cold lead handling, launched a dedicated Winback team</li>
+<li>Tiered commission across Hot, Warm and Cold</li>
+<li>Real-time dashboard, Lean Six Sigma, same-day visibility</li></ul></li>
+<li><b>Result</b>: 11% to 13%, lead burn from around 90% to under 1% within two months</li>
+</ul></div></details>
+<details><summary>Script</summary><div>
+<p><b>In short.</b> I redesigned how leads were handled in a regulated insurance contact centre, and new business conversion went from 11% to 13% and lead burn from around 90% to under 1% within two months.</p>
+<p><b>Situation.</b> I owned a team of 50, half Sales and half Aftersales. Cold leads were where effort was being lost.</p>
+<p><b>Task.</b> I needed to lift new business conversion and stop leads going to waste.</p>
+<p><b>Action.</b> I redesigned how they were handled and launched a dedicated Winback team to recover them. I built a tiered commission framework across Hot, Warm and Cold leads so sellers had a reason to prioritise the right ones. And I built a real-time dashboard using Lean Six Sigma methods so leadership could see pipeline health, seller performance and conversion the same day.</p>
+<p><b>Result.</b> New business conversion went from 11% to 13%, and lead burn, the leads not contacted within three days, fell from around 90% to under 1% within two months.</p></div></details>
+<details><summary>If asked</summary><div><ul>
+<li>Lead burn in plain words: leads not contacted within three days are burned. It went from around 90% to under 1% once the leads were properly categorised</li>
+<li>Scale: monthly targets of $1 to 1.5M new business and about $2M renewals, within a $40M annual book</li></ul></div></details>
+</section>
+
+<section class="p c0" id="partner" hidden>
+<p class="hook">No formal partner role. The closest was onboarding partners at Cisco.</p>
+<p class="lp">Honest answer, do not stretch it</p>
+<details><summary>Glanceable</summary><div><ul>
+<li>No formal partner or channel role</li>
+<li>Cisco: onboarded partners onto the VDC platform, better incentives</li>
+<li>BDRs passed leads to partners who booked the deals</li>
+<li>Vendor briefs changed using conversion data</li></ul></div></details>
+<details><summary>Script</summary><div>
+<p>I haven’t held a formal partner or channel role. The closest was at Cisco, where I onboarded partners onto the VDC platform and worked on how they were better incentivised. Our BDRs passed leads to partners who booked the deals, so I managed that handoff. I also used data to change how our vendors worked, with a clearer brief based on what actually converted.</p></div></details>
 </section>
 </main>
 <script>
-var t=[].slice.call(document.querySelectorAll('.tab')),p=[].slice.call(document.querySelectorAll('.p'));
-function go(id){t.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t==id)});p.forEach(function(x){x.hidden=x.id!=id});window.scrollTo(0,0);setTimeout(sb,0)}
-t.forEach(function(b){b.onclick=function(){go(b.dataset.t)}});
-var K='lfg-open',S={};
-try{S=JSON.parse(localStorage.getItem(K)||'{}')||{}}catch(e){S={}}
-p.forEach(function(s){[].slice.call(s.querySelectorAll('details')).forEach(function(d,i){var k=s.id+':'+i;d.open=!!S[k];d.addEventListener('toggle',function(){if(d.open)S[k]=1;else delete S[k];try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}})})});
-var tr=document.createElement('div'),th=document.createElement('div');
-tr.className='sb';th.className='sbt';tr.appendChild(th);document.body.appendChild(tr);
-function sb(){var h=document.documentElement,H=h.scrollHeight,V=window.innerHeight;if(H<=V+2){tr.style.display='none';return}tr.style.display='block';var T=tr.clientHeight,l=Math.max(28,T*V/H),y=(T-l)*(window.scrollY/(H-V));th.style.height=l+'px';th.style.transform='translateY('+y+'px)'}
-window.addEventListener('scroll',sb,{passive:true});window.addEventListener('resize',sb);
-document.addEventListener('toggle',sb,true);
-if(window.ResizeObserver){new ResizeObserver(sb).observe(document.body)}
-var SK='lfg-sub',SS={};
-try{SS=JSON.parse(localStorage.getItem(SK)||'{}')||{}}catch(e){SS={}}
-function pick(b,save){var s=b.closest('.p');[].slice.call(s.querySelectorAll('.stab')).forEach(function(x){x.setAttribute('aria-selected',x==b)});[].slice.call(s.querySelectorAll('.sp')).forEach(function(x){x.hidden=x.id!=b.dataset.s});var h=s.querySelector('.hint');if(h)h.hidden=true;if(save){SS[s.id]=b.dataset.s;try{localStorage.setItem(SK,JSON.stringify(SS))}catch(e){}}setTimeout(sb,0)}
-[].slice.call(document.querySelectorAll('.stab')).forEach(function(b){b.onclick=function(){pick(b,true)};if(SS[b.closest('.p').id]==b.dataset.s)pick(b,false)});
-go('intro');
-</script></body></html>
+(function(){
+'use strict';
+var KEY='lfg-state',cur='';
+var state={tab:'intro',sub:{},scroll:{},open:{}};
+try{
+  var saved=JSON.parse(localStorage.getItem(KEY));
+  if(saved&&typeof saved==='object'){
+    state.tab=saved.tab||state.tab;state.sub=saved.sub||{};state.scroll=saved.scroll||{};state.open=saved.open||{};
+  }
+}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function all(sel,root){return [].slice.call((root||document).querySelectorAll(sel))}
+
+var tabs=all('.tab'),panels=all('.p'),rows=all('.row');
+var bar=document.createElement('div'),thumb=document.createElement('div');
+bar.className='bar';bar.appendChild(thumb);document.body.appendChild(bar);
+
+function updateBar(){
+  var H=document.documentElement.scrollHeight,V=window.innerHeight;
+  if(H<=V+2){bar.style.display='none';return}
+  bar.style.display='block';
+  var T=bar.clientHeight,len=Math.max(28,T*V/H),y=(T-len)*(window.scrollY/(H-V));
+  thumb.style.height=len+'px';thumb.style.transform='translateY('+y+'px)';
+}
+function spot(){return cur+(state.sub[cur]?':'+state.sub[cur]:'')}
+function keep(){if(cur){state.scroll[spot()]=Math.round(window.scrollY);save()}}
+function restore(){window.scrollTo(0,state.scroll[spot()]||0);updateBar()}
+function fade(row){
+  row.style.setProperty('--fl',(row.scrollLeft>2?20:0)+'px');
+  row.style.setProperty('--fr',(row.scrollLeft+row.clientWidth<row.scrollWidth-2?20:0)+'px');
+}
+function center(btn){
+  var row=btn.parentNode;
+  row.scrollLeft=btn.offsetLeft-(row.clientWidth-btn.offsetWidth)/2;
+  fade(row);
+}
+function showTab(id){
+  if(!document.getElementById(id))id='intro';
+  keep();cur=id;state.tab=id;
+  tabs.forEach(function(b){var on=b.dataset.t===id;b.setAttribute('aria-selected',on);if(on)center(b)});
+  panels.forEach(function(p){p.hidden=p.id!==id});
+  save();restore();
+}
+function showSub(sec,id,byUser){
+  var hint=sec.querySelector('.hint');
+  if(byUser)keep();
+  state.sub[sec.id]=id;
+  all('.stab',sec).forEach(function(b){b.setAttribute('aria-selected',b.dataset.s===id)});
+  all('.sp',sec).forEach(function(s){s.hidden=s.id!==id});
+  if(hint)hint.hidden=true;
+  save();
+  if(byUser)restore();
+}
+
+panels.forEach(function(p){
+  all('details',p).forEach(function(d,i){
+    var k=p.id+':'+i;
+    d.open=!!state.open[k];
+    d.addEventListener('toggle',function(){
+      if(d.open)state.open[k]=1;else delete state.open[k];
+      save();updateBar();
+    });
+  });
+  var want=state.sub[p.id];
+  if(want&&document.getElementById(want))showSub(p,want,false);
+});
+
+tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.dataset.t)})});
+all('.stab').forEach(function(b){b.addEventListener('click',function(){showSub(b.closest('.p'),b.dataset.s,true)})});
+rows.forEach(function(r){r.addEventListener('scroll',function(){fade(r)},{passive:true});fade(r)});
+
+var timer;
+window.addEventListener('scroll',function(){updateBar();clearTimeout(timer);timer=setTimeout(keep,150)},{passive:true});
+window.addEventListener('resize',function(){updateBar();rows.forEach(fade)});
+window.addEventListener('pagehide',keep);
+document.addEventListener('visibilitychange',function(){if(document.hidden)keep()});
+if(window.ResizeObserver)new ResizeObserver(updateBar).observe(document.body);
+
+showTab(state.tab);
+requestAnimationFrame(function(){requestAnimationFrame(restore)});
+})();
+</script>
+</body>
+</html>
