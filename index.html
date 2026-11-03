@@ -42,6 +42,8 @@ td:first-child{width:42%;color:var(--mut)}
 .cf{padding:0 3px;border-radius:3px;background:var(--hl);color:var(--hf)}
 .bar{position:fixed;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);right:2px;z-index:20;width:6px;border-radius:3px;background:var(--bd);opacity:.7;pointer-events:none}
 .bar div{width:100%;border-radius:3px;background:var(--ac)}
+.map p{margin:0 0 9px}
+a[data-go]{color:var(--ac);font-weight:700;text-decoration:underline}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -243,6 +245,14 @@ td:first-child{width:42%;color:var(--mut)}
 
 <section class="p" id="open" hidden>
 <p class="hook">Do not say anything marked as confirm until it is checked.</p>
+<details><summary>Which story for which question</summary><div class="map">
+<p><b>1. Problem with several solutions</b><br><a href="#hubs" data-go="hubs">Hubs</a>. Keep old vendors, switch to one, or stay. Workshops, RFP to 12, picked the consistent one</p>
+<p><b>2. Risk, mistake or failure</b><br><a href="#mistake" data-go="mistake" data-sub="mistake1">Mistake</a>. Full STAR, the cost was client trust, the fix, what I changed</p>
+<p><b>3. Took the lead on a project</b><br><a href="#vdc" data-go="vdc">VDC</a>. Shaped, influenced and led the APJC rollout, heads and country leaders first</p>
+<p><b>4. Motivate a group or promote collaboration</b><br><a href="#telco" data-go="telco">Telco</a>. Agents stopped taking calls on day two, mood moved in days. For collaboration use <a href="#vdc" data-go="vdc">VDC</a> with the EMEA and AMER counterparts</p>
+<p><b>5. Used data to build a strategy</b><br><a href="#vdce" data-go="vdce">VDCE</a>. Monthly review, digital-intent leads not converting, cut volume, agent time to warm leads, Qualified Demand up 19%</p>
+<p><b>Spare</b><br><a href="#hiring" data-go="hiring">Hiring</a> for a risk that paid off. <a href="#mistake" data-go="mistake" data-sub="mistake2">Mistake 2</a> for a second failure story</p>
+</div></details>
 <details><summary>To confirm or recover</summary><div><ul>
 <li>Top performer story: employer decided, hold it until asked</li>
 <li><span class="cf">Mistake 2</span>, decide which role and when before the call</li>
@@ -551,6 +561,13 @@ panels.forEach(function(p){
 
 tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.dataset.t)})});
 all('.stab').forEach(function(b){b.addEventListener('click',function(){showSub(b.closest('.p'),b.dataset.s,true)})});
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[data-go]');
+  if(!a)return;
+  e.preventDefault();
+  showTab(a.dataset.go);
+  if(a.dataset.sub)showSub(document.getElementById(a.dataset.go),a.dataset.sub,true);
+});
 rows.forEach(function(r){r.addEventListener('scroll',function(){fade(r)},{passive:true});fade(r)});
 
 var timer;
